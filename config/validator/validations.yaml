@@ -23,7 +23,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Temperature in Celsius cannot be higher than {{ limit }}."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Celsius must be a valid number."
           groups: [ 'create', 'edit' ]
     Fahrenheit:
@@ -37,7 +37,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Temperature in Fahrenheit cannot be higher than {{ limit }}."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Fahrenheit must be a valid number."
           groups: [ 'create', 'edit' ]
     Kelvin:
@@ -51,7 +51,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Temperature in Kelvin cannot be higher than {{ limit }}."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Kelvin must be a valid number."
           groups: [ 'create', 'edit' ]
     Rain_Prediction:
@@ -70,7 +70,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Wind speed cannot be higher than {{ limit }} km/h."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Wind speed must be a valid number."
           groups: [ 'create', 'edit' ]
     Humidity:
@@ -84,7 +84,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Humidity cannot be higher than {{ limit }}%."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Humidity must be a valid number."
           groups: [ 'create', 'edit' ]
     Air_Pressure:
@@ -98,7 +98,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Air pressure cannot be higher than {{ limit }} hPa."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Air pressure must be a valid number."
           groups: [ 'create', 'edit' ]
     Visibility:
@@ -112,7 +112,7 @@ App\Entity\WeatherMeasurements:
           maxMessage: "Visibility cannot be higher than {{ limit }} km."
           groups: [ 'create', 'edit' ]
       - Type:
-          type: "float"
+          type: "numeric"
           message: "Visibility must be a valid number."
           groups: [ 'create', 'edit' ]
     UV_Index:
@@ -143,4 +143,66 @@ App\Entity\WeatherMeasurements:
           pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
           match: true
           message: "Description contains invalid text."
+          groups: [ 'create', 'edit' ]
+
+App\Entity\Location:
+  properties:
+    city:
+      - NotBlank:
+          message: "City must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "City name must be at least {{ limit }} character long."
+          maxMessage: "City name cannot be longer than {{ limit }} characters."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Not a valid text"
+          groups: [ 'create', 'edit' ]
+    country:
+      - NotBlank:
+          message: "Country must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          exactMessage: "Country code must be exactly {{ limit }} characters long."
+          min: 2
+          max: 2
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Not a valid text"
+          groups: [ 'create', 'edit' ]
+    latitude:
+      - NotBlank:
+          message: "Latitude must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -90
+          max: 90
+          minMessage: "Latitude must be at least {{ limit }}."
+          maxMessage: "Latitude cannot exceed {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(-?(0|[1-9][0-9]*)(\.[0-9]+)?)$/'
+          match: true
+          message: "Not a number"
+          groups: [ 'create', 'edit' ]
+    longitude:
+      - NotBlank:
+          message: "Longitude must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -180
+          max: 180
+          minMessage: "Longitude must be at least {{ limit }}."
+          maxMessage: "Longitude cannot exceed {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(-?(0|[1-9][0-9]*)(\.[0-9]+)?)$/'
+          match: true
+          message: "Not a number"
           groups: [ 'create', 'edit' ]
