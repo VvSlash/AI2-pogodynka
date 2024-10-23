@@ -1,0 +1,61 @@
+App\Entity\Location:
+  properties:
+    city:
+      - NotBlank:
+          message: "City must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "City name must be at least {{ limit }} character long."
+          maxMessage: "City name cannot be longer than {{ limit }} characters."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Not a valid text"
+          groups: [ 'create', 'edit' ]
+    country:
+      - NotBlank:
+          message: "Country must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          exactMessage: "Country code must be exactly {{ limit }} characters long."
+          min: 2
+          max: 2
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Not a valid text"
+          groups: [ 'create', 'edit' ]
+    latitude:
+      - NotBlank:
+          message: "Latitude must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -90
+          max: 90
+          minMessage: "Latitude must be at least {{ limit }}."
+          maxMessage: "Latitude cannot exceed {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(-?(0|[1-9][0-9]*)(\.[0-9]+)?)$/'
+          match: true
+          message: "Not a number"
+          groups: [ 'create', 'edit' ]
+    longitude:
+      - NotBlank:
+          message: "Longitude must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -180
+          max: 180
+          minMessage: "Longitude must be at least {{ limit }}."
+          maxMessage: "Longitude cannot exceed {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(-?(0|[1-9][0-9]*)(\.[0-9]+)?)$/'
+          match: true
+          message: "Not a number"
+          groups: [ 'create', 'edit' ]

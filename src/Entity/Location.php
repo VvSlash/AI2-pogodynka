@@ -26,7 +26,7 @@ class Location
     private ?string $Latitude = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
-    private ?string $Longtitude = null;
+    private ?string $Longitude = null;
 
     #[ORM\OneToMany(targetEntity: WeatherMeasurements::class, mappedBy: 'Location')]
     private Collection $weatherMeasurements;
@@ -77,14 +77,14 @@ class Location
         return $this;
     }
 
-    public function getLongtitude(): ?string
+    public function getLongitude(): ?string
     {
-        return $this->Longtitude;
+        return $this->Longitude;
     }
 
-    public function setLongtitude(string $Longtitude): static
+    public function setLongitude(string $Longitude): static
     {
-        $this->Longtitude = $Longtitude;
+        $this->Longitude = $Longitude;
 
         return $this;
     }
