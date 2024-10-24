@@ -33,7 +33,7 @@ class LocationType extends AbstractType
             ->add('Latitude',NumberType::class, [
 
             ])
-            ->add('Longtitude',NumberType::class, [
+            ->add('Longitude',NumberType::class, [
 
             ])
         ;
