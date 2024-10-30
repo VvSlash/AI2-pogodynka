@@ -1,0 +1,208 @@
+App\Entity\WeatherMeasurements:
+  properties:
+    Location:
+      - NotBlank:
+          message: "Location must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "App\\Entity\\Location"
+          message: "Invalid location entity."
+          groups: [ 'create', 'edit' ]
+    Date:
+      - NotBlank:
+          message: "Date must not be blank. "
+          groups: [ 'create', 'edit' ]
+    Celsius:
+      - NotBlank:
+          message: "Celsius temperature must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -100
+          max: 100
+          minMessage: "Temperature in Celsius cannot be lower than {{ limit }}."
+          maxMessage: "Temperature in Celsius cannot be higher than {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Celsius must be a valid number."
+          groups: [ 'create', 'edit' ]
+    Fahrenheit:
+      - NotBlank:
+          message: "Fahrenheit temperature must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -200
+          max: 200
+          minMessage: "Temperature in Fahrenheit cannot be lower than {{ limit }}."
+          maxMessage: "Temperature in Fahrenheit cannot be higher than {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Fahrenheit must be a valid number."
+          groups: [ 'create', 'edit' ]
+    Kelvin:
+      - NotBlank:
+          message: "Kelvin temperature must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: 0
+          max: 500
+          minMessage: "Temperature in Kelvin cannot be lower than {{ limit }}."
+          maxMessage: "Temperature in Kelvin cannot be higher than {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Kelvin must be a valid number."
+          groups: [ 'create', 'edit' ]
+    Rain_Prediction:
+      - Type:
+          type: "boolean"
+          message: "Rain prediction must be a boolean."
+          groups: [ 'create', 'edit' ]
+    Wind_Speed:
+      - NotBlank:
+          message: "Wind speed must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: 0
+          max: 500
+          minMessage: "Wind speed must be at least {{ limit }} km/h."
+          maxMessage: "Wind speed cannot be higher than {{ limit }} km/h."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Wind speed must be a valid number."
+          groups: [ 'create', 'edit' ]
+    Humidity:
+      - NotBlank:
+          message: "Humidity must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: 0
+          max: 100
+          minMessage: "Humidity must be at least {{ limit }}%."
+          maxMessage: "Humidity cannot be higher than {{ limit }}%."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Humidity must be a valid number."
+          groups: [ 'create', 'edit' ]
+    Air_Pressure:
+      - NotBlank:
+          message: "Air pressure must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: 800
+          max: 1100
+          minMessage: "Air pressure must be at least {{ limit }} hPa."
+          maxMessage: "Air pressure cannot be higher than {{ limit }} hPa."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Air pressure must be a valid number."
+          groups: [ 'create', 'edit' ]
+    Visibility:
+      - NotBlank:
+          message: "Visibility must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: 0
+          max: 100
+          minMessage: "Visibility must be at least {{ limit }} km."
+          maxMessage: "Visibility cannot be higher than {{ limit }} km."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "numeric"
+          message: "Visibility must be a valid number."
+          groups: [ 'create', 'edit' ]
+    UV_Index:
+      - NotBlank:
+          message: "UV index must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: 0
+          max: 11
+          minMessage: "UV index must be at least {{ limit }}."
+          maxMessage: "UV index cannot be higher than {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Type:
+          type: "integer"
+          message: "UV index must be an integer."
+          groups: [ 'create', 'edit' ]
+    Weather_Description:
+      - NotBlank:
+          message: "Weather description must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          min: 10
+          max: 1000
+          minMessage: "Weather description must be at least {{ limit }} characters long."
+          maxMessage: "Weather description cannot be longer than {{ limit }} characters."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Description contains invalid text."
+          groups: [ 'create', 'edit' ]
+
+App\Entity\Location:
+  properties:
+    city:
+      - NotBlank:
+          message: "City must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "City name must be at least {{ limit }} character long."
+          maxMessage: "City name cannot be longer than {{ limit }} characters."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Not a valid text"
+          groups: [ 'create', 'edit' ]
+    country:
+      - NotBlank:
+          message: "Country must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Length:
+          exactMessage: "Country code must be exactly {{ limit }} characters long."
+          min: 2
+          max: 2
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^[A-zÀ-ž]+(?: [A-zÀ-ž]+)*$/'
+          match: true
+          message: "Not a valid text"
+          groups: [ 'create', 'edit' ]
+    latitude:
+      - NotBlank:
+          message: "Latitude must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -90
+          max: 90
+          minMessage: "Latitude must be at least {{ limit }}."
+          maxMessage: "Latitude cannot exceed {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(-?(0|[1-9][0-9]*)(\.[0-9]+)?)$/'
+          match: true
+          message: "Not a number"
+          groups: [ 'create', 'edit' ]
+    longitude:
+      - NotBlank:
+          message: "Longitude must not be blank."
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -180
+          max: 180
+          minMessage: "Longitude must be at least {{ limit }}."
+          maxMessage: "Longitude cannot exceed {{ limit }}."
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(-?(0|[1-9][0-9]*)(\.[0-9]+)?)$/'
+          match: true
+          message: "Not a number"
+          groups: [ 'create', 'edit' ]

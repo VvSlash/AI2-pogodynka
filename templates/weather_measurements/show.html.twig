@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherMeasurements{% endblock %}
+
+{% block body %}
+    <h1>WeatherMeasurements</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ weather_measurement.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ weather_measurement.date ? weather_measurement.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Celsius</th>
+                <td>{{ weather_measurement.celsius }}</td>
+            </tr>
+            <tr>
+                <th>Fahrenheit</th>
+                <td>{{ weather_measurement.fahrenheit }}</td>
+            </tr>
+            <tr>
+                <th>Kelvin</th>
+                <td>{{ weather_measurement.kelvin }}</td>
+            </tr>
+            <tr>
+                <th>RainPrediction</th>
+                <td>{{ weather_measurement.rainPrediction ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>WindSpeed</th>
+                <td>{{ weather_measurement.windSpeed }}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{ weather_measurement.humidity }}</td>
+            </tr>
+            <tr>
+                <th>Visibility</th>
+                <td>{{ weather_measurement.visibility }}</td>
+            </tr>
+            <tr>
+                <th>AirPressure</th>
+                <td>{{ weather_measurement.airPressure }}</td>
+            </tr>
+            <tr>
+                <th>UvIndex</th>
+                <td>{{ weather_measurement.uvIndex }}</td>
+            </tr>
+            <tr>
+                <th>WeatherDescription</th>
+                <td>{{ weather_measurement.weatherDescription }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_weather_measurements_index') }}">back to list</a>
+
+    <a href="{{ path('app_weather_measurements_edit', {'id': weather_measurement.id}) }}">edit</a>
+
+    {{ include('weather_measurements/_delete_form.html.twig') }}
+{% endblock %}

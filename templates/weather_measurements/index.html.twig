@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherMeasurements index{% endblock %}
+
+{% block body %}
+    <h1>WeatherMeasurements index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Celsius</th>
+                <th>Fahrenheit</th>
+                <th>Kelvin</th>
+                <th>RainPrediction</th>
+                <th>WindSpeed</th>
+                <th>Humidity</th>
+                <th>Visibility</th>
+                <th>AirPressure</th>
+                <th>UvIndex</th>
+                <th>WeatherDescription</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for weather_measurement in weather_measurements %}
+            <tr>
+                <td>{{ weather_measurement.id }}</td>
+                <td>{{ weather_measurement.date ? weather_measurement.date|date('Y-m-d') : '' }}</td>
+                <td>{{ weather_measurement.celsius }}</td>
+                <td>{{ weather_measurement.fahrenheit }}</td>
+                <td>{{ weather_measurement.kelvin }}</td>
+                <td>{{ weather_measurement.rainPrediction ? 'Yes' : 'No' }}</td>
+                <td>{{ weather_measurement.windSpeed }}</td>
+                <td>{{ weather_measurement.humidity }}</td>
+                <td>{{ weather_measurement.visibility }}</td>
+                <td>{{ weather_measurement.airPressure }}</td>
+                <td>{{ weather_measurement.uvIndex }}</td>
+                <td>{{ weather_measurement.weatherDescription }}</td>
+                <td>
+                    <a href="{{ path('app_weather_measurements_show', {'id': weather_measurement.id}) }}">show</a>
+                    <a href="{{ path('app_weather_measurements_edit', {'id': weather_measurement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_weather_measurements_new') }}">Create new</a>
+{% endblock %}
