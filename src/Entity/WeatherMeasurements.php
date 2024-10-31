@@ -92,9 +92,10 @@ class WeatherMeasurements
         return $this;
     }
 
-    public function getFahrenheit(): ?string
+    public function getFahrenheit(): ?float /*?string*/
     {
-        return $this->fahrenheit;
+//        return $this->fahrenheit;
+        return ($this->getCelsius() * 9 / 5) + 32;
     }
 
     public function setFahrenheit(string $fahrenheit): static

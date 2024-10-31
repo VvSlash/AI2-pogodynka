@@ -1,0 +1,6 @@
+{# Nagłówki CSV #}
+city,country,date,celsius,fahrenheit,kelvin,rain_prediction,wind_speed,humidity,air_pressure,visibility,uv_index,weather_description
+{# Dane CSV #}
+{% for measurement in measurements %}
+{{ city }},{{ country }},{{ measurement.date | date('Y-m-d') }},{{ measurement.celsius }},{{ measurement.fahrenheit }},{{ measurement.kelvin }},{{ measurement.rain_prediction ? 'true' : 'false' }},{{ measurement.wind_speed }},{{ measurement.humidity }},{{ measurement.air_pressure }},{{ measurement.visibility }},{{ measurement.uv_index }},{{ measurement.weather_description }}
+{% endfor %}

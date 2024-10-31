@@ -1,0 +1,23 @@
+{# Blok JSON #}
+{
+    "city": "{{ city }}",
+    "country": "{{ country }}",
+    "measurements": [
+        {# Iteracja przez pomiary #}
+        {% for measurement in measurements %}
+        {
+            "date": "{{ measurement.date | date('Y-m-d') }}",
+            "celsius": {{ measurement.celsius }},
+            "fahrenheit": {{ measurement.fahrenheit }},
+            "kelvin": {{ measurement.kelvin }},
+            "rain_prediction": {{ measurement.rain_prediction ? 'true' : 'false' }},
+            "wind_speed": {{ measurement.wind_speed }},
+            "humidity": {{ measurement.humidity }},
+            "air_pressure": {{ measurement.air_pressure }},
+            "visibility": {{ measurement.visibility }},
+            "uv_index": {{ measurement.uv_index }},
+            "weather_description": "{{ measurement.weather_description }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
